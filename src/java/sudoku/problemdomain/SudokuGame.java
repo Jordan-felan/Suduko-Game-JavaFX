@@ -1,5 +1,7 @@
 package sudoku.problemdomain;
 
+import sudoku.constants.GameState;
+
 import java.io.Serializable;
 
 public class SudokuGame implements Serializable {
@@ -8,16 +10,17 @@ public class SudokuGame implements Serializable {
 
     public static final int GRID_BOUNDARY = 9;
 
+    public SudokuGame(GameState gameState, int[][] gridState) {
+        this.gameState = gameState;
+        this.gridState = gridState;
+    }
+
     public GameState getGameState() {
         return gameState;
     }
 
-    public int[][] getCOpyOfGridState() {
+    public int[][] getCopyOfGridState() {
         return SudukoUtilities.copyToNewArray(gridState);
     }
 
-    public SudukoGame(GameState gameState, int[][] gridState){
-        this.gameState = gameState;
-        this.gridState = gridState;
-    }
 }
