@@ -25,17 +25,35 @@ public class GameLogic {
         return GameState.COMPLETE;
     }
 
-    private static boolean sudokuIsInvalid(int[][] grid) {
+    public static boolean sudokuIsInvalid(int[][] grid) {
         if(rowsAreInvalid(grid)) return true;
         if(columnsAreInvalid(grid)) return true;
         if(squaresAreInvalid(grid)) return true;
         else return false;
     }
 
+    private static boolean rowsAreInvalid(int[][] grid) {
+        for (int yIndex = 0; yIndex <GRID_BOUNDARY; yIndex++){
+            List<Integer> row = new ArrayList<>();
+            for(int xIndex = 0; xIndex < GRID_BOUNDARY; xIndex++){
+                row.add(grid[xIndex][yIndex]);
+            }
+            if(collectionHasRepeats(row)) return true;
+        }
+
+        return false;
+    }
+
     private static boolean columnsAreInvalid(int[][] grid) {
         for (int xIndex = 0; xIndex <GRID_BOUNDARY; xIndex++){
             List<Integer> row = new ArrayList<>();
+            for(int yIndex = 0; yIndex < GRID_BOUNDARY; yIndex++){
+                row.add(grid[xIndex][yIndex]);
+            }
+            if(collectionHasRepeats(row)) return true;
         }
+
+        return false;
     }
 
     private static boolean squaresAreInvalid(int[][] grid) {

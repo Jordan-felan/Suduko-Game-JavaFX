@@ -52,5 +52,6 @@ public class SudokuSolver {
                 }
             }
         }
+        return emptyCells;
     }
 }
